@@ -4,6 +4,7 @@ Table "je"."scentity" {
   "merchant_name" varchar(30)
   "mobile" varchar(15)
   "email" varchar(50)
+  "address" varchar(40)
   "created at" timestamp
   "status" int
   "due_ammount" float
@@ -16,6 +17,8 @@ Table "je"."sdentity" {
   "merchant_name" varchar(30)
   "mobile" varchar(15)
   "email" varchar(50)
+  "address" varchar(40)
+
   "created at" timestamp
   "status" int
   "due_ammount" float
