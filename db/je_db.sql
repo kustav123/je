@@ -20,7 +20,7 @@ CREATE TABLE `je`.`sdentity` (
   `created at` timestamp,
   `status` int,
   `due_ammount` float,
-  `gst` varchar(255),
+  `gst` varchar(17),
   `created_by` varchar(10)
 );
 
@@ -40,20 +40,20 @@ CREATE TABLE `je`.`finish_product` (
   `unit` varchar(255),
   `HSN` varchar(8),
   `cgst` varchar(255),
-  `sgst` varchar,
+  `sgst` varchar(255),
   `current_stock` float,
   `status` int
 );
 
 CREATE TABLE `je`.`product_entry_main` (
   `id` int PRIMARY KEY,
-  `chalan_no` varchar,
-  `from` varchar(255),
+  `chalan_no` varchar(255),
+  `from` varchar(20),
   `recived_date` date,
-  `delivary_mode` varchar(255),
+  `delivary_mode` varchar(10),
   `created at` timestamp,
   `total_amount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   `created_by` varchar(10)
 );
 
@@ -64,19 +64,19 @@ CREATE TABLE `je`.`product_entry_history` (
   `product` varchar(20),
   `qty` float,
   `amount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   PRIMARY KEY (`id`, `entry_id`)
 );
 
 CREATE TABLE `je`.`product_delivary_main` (
   `id` int PRIMARY KEY,
   `chalan_no` varchar(50),
-  `to` varchar(255),
+  `to` varchar(20),
   `delivary_date` date,
-  `delivary_mode` varchar(255),
+  `delivary_mode` varchar(10),
   `created_at` timestamp,
   `total_amount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   `created_by` varchar(10)
 );
 
@@ -84,10 +84,10 @@ CREATE TABLE `je`.`product_delivery_history` (
   `id` int,
   `entry_id` int,
   `created_at` timestamp,
-  `product` varchar(255),
+  `product` varchar(10),
   `qty` float,
   `amount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   PRIMARY KEY (`id`, `entry_id`)
 );
 
@@ -96,10 +96,10 @@ CREATE TABLE `je`.`sc_payment_entry` (
   `scid` int,
   `created_at` timestamp,
   `amount` float,
-  `mode` varchar(255),
+  `mode` varchar(10),
   `hisamount` float,
   `curamount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   `created_by` varchar(10)
 );
 
@@ -108,24 +108,24 @@ CREATE TABLE `je`.`sd_payment_entry` (
   `sdid` int,
   `created_at` timestamp,
   `amount` float,
-  `mode` varchar(255),
+  `mode` varchar(10),
   `hisamount` float,
   `curamount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`invoice_gst_main` (
   `id` int PRIMARY KEY,
-  `invoice_no`varchar(30),
-  `to` varchar(255),
+  `invoice_no` varchar(30),
+  `to` varchar(20),
   `gst` varbinary,
   `inovice_date` date,
   `gross_amount` float,
   `cgst_amount` float,
   `ssgst_amount` float,
   `total_amount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   `created_at` timestamp,
   `created_by` varchar(10),
   `paid` bool
@@ -142,7 +142,7 @@ CREATE TABLE `je`.`invoice_gst_history` (
   `sgst` varchar(10),
   `gross_amount` float,
   `total_ammount` float,
-  `remarks` varchar(255),
+  `remarks` varchar(100),
   PRIMARY KEY (`id`, `entry_id`)
 );
 
@@ -153,9 +153,9 @@ CREATE TABLE `je`.`leadger_sc` (
   `type` varchar(20),
   `current_amomount` float,
   `truns_ammount` float,
-  `mode` varchar(255),
-  `refno` varchar(255),
-  `remarks` varchar(255),
+  `mode` varchar(10),
+  `remarks` varchar(50),
+  `refno` varchar(50),
   `created at` timestamp
 );
 
@@ -166,9 +166,9 @@ CREATE TABLE `je`.`leadger_sd` (
   `type` varchar(20),
   `current_amomount` float,
   `truns_ammount` float,
-  `mode` varchar(255),
-  `remarks` varchar(255),
-  `refno` varchar(255),
+  `mode` varchar(10),
+  `remarks` varchar(50),
+  `refno` varchar(50),
   `created at` timestamp
 );
 
@@ -185,9 +185,9 @@ CREATE TABLE `je`.`secuence` (
 CREATE TABLE `je`.`appinfo` (
   `id` int,
   `name` varchar(50),
-  `logo` varchar(255),
-  `address` varchar(255),
-  `gstno` varchar(255)
+  `logo` varchar(100),
+  `address` varchar(100),
+  `gstno` varchar(17)
 );
 
 CREATE TABLE `je`.`appuser` (
@@ -196,8 +196,8 @@ CREATE TABLE `je`.`appuser` (
   `mobile` varchar(15),
   `email` varchar(50),
   `password` varchar(255),
-  `role` varchar(255),
-  `sign` varchar(255),
+  `role` varchar(2),
+  `sign` varchar(100),
   `status` varchar(1),
   `is_logedin` varchar(1),
   `lastlogin_time` timestamp,
