@@ -1,0 +1,245 @@
+//sundry creditors
+Table je.scentity  {
+  id int pk 
+  merchant_name varchar
+  "created at" timestamp
+  status int 
+  due_ammount float
+  gst varchar
+  created_by varchar
+}
+
+//sundry debtors
+Table je.sdentity  {
+  id int pk 
+  merchant_name varchar
+  "created at" timestamp
+  status int 
+  due_ammount float
+  gst varchar
+  created_by varchar
+}
+//product raw master
+Table je.raw_product {
+  id int pk 
+  name varchar
+  "created at" timestamp
+  unit varchar
+  current_stock float
+  status int 
+}
+//product finish master
+Table je.finish_product {
+  id int pk 
+  name varchar
+  "created at" timestamp
+  unit varchar
+  HSN   varchar
+  cgst  varchar
+  sgst   var
+  current_stock float
+  status int 
+}
+//Recive Product
+Table je.product_entry_main {
+  id int pk 
+  chalan_no varcharar
+  from varchar
+  "recived_date" date
+    "delivary_mode" varchar
+
+  "created at" timestamp
+  total_amount float
+  remarks varchar
+  created_by varchar
+
+}
+Table je.product_entry_history {
+  id int pk 
+  entry_id int pk 
+  "created at" timestamp
+  product varchar
+  qty float
+  amount float
+  remarks varchar
+
+}
+
+//Delivary product
+
+Table je.product_delivary_main {
+  id int pk 
+  chalan_no varcharar
+  to varchar
+  "delivary_date" date
+  "delivary_mode" varchar
+  "created_at" timestamp
+  total_amount float
+  remarks varchar
+  created_by varchar
+}
+Table je.product_delivery_history {
+  id int pk 
+  entry_id int pk 
+  "created_at" timestamp
+  product varchar
+  qty float
+  amount float
+  remarks varchar
+
+}
+//paymanet
+Table je.sc_payment_entry {
+  id int pk 
+  scid int  
+  "created_at" timestamp
+  amount float
+  mode varchar
+  hisamount float
+  curamount float
+  remarks varchar
+  created_by varchar
+
+}
+Table je.sd_payment_entry {
+  id int pk 
+  sdid int  
+  "created_at" timestamp
+  amount float
+  mode varchar
+  hisamount float
+  curamount float
+  remarks varchar
+  created_by varchar
+ 
+}
+
+
+//GST Invoice
+Table je.invoice_gst_main {
+  id int pk 
+  invoice_no varcharar
+  to varchar
+  gst varbinary
+  "inovice_date" date
+  gross_amount float
+  cgst_amount float
+  ssgst_amount float
+  total_amount float
+  remarks varchar
+  "created_at" timestamp
+   created_by varchar
+
+  paid bool
+}
+Table je.invoice_gst_history {
+  id int pk 
+  entry_id int pk 
+  "created at" timestamp
+  product varchar
+  qty float
+  HSN   varchar
+  cgst  varchar
+  sgst   varchar
+  gross_amount float
+  total_ammount float
+  remarks varchar
+
+}
+
+//leadger
+
+Table je.leadger_sc {
+  id int pk 
+  name varchar
+  date date
+  type varchar
+  current_amomount float
+  truns_ammount float
+  mode varchar
+  refno varchar  // inovice or payslip
+  remarks varchar
+  "created at" timestamp
+}
+Table je.leadger_sd {
+  id int pk 
+  name varchar
+  date date
+  type varchar
+  current_amomount float
+  truns_ammount float
+  mode varchar
+  remarks varchar
+  refno varchar  // inovice or payslip
+  "created at" timestamp
+}
+
+
+//admin
+//for serial number
+Table je.secuence {
+  id int pk 
+  type varchar
+  head  varchar
+  sno   varchar
+  remarks varchar
+  status bool
+  "created at" timestamp
+}
+Table je.appinfo {
+  id int
+  name varchar
+  logo varchar
+  address varchar
+  gstno  varchar
+}
+
+Table je.appuser {
+  id int
+  name varchar
+  password varchar
+  role varchar
+  sign  varchar
+  status varchar
+  is_logedin varchar
+  lastlogin_time timestamp
+  lastlogin_from varchar
+}
+Ref: "je"."raw_product"."id" < "je"."product_entry_history"."product"
+
+Ref: "je"."scentity"."id" < "je"."product_entry_main"."from"
+
+Ref: "je"."product_entry_main"."id" < "je"."product_entry_history"."entry_id"
+
+Ref: "je"."sc_payment_entry"."scid" < "je"."scentity"."id"
+
+Ref: "je"."sdentity"."id" < "je"."sd_payment_entry"."sdid"
+
+Ref: "je"."product_delivary_main"."to" < "je"."sdentity"."id"
+
+Ref: "je"."product_delivery_history"."entry_id" < "je"."product_delivary_main"."id"
+
+Ref: "je"."invoice_gst_history"."entry_id" < "je"."invoice_gst_main"."id"
+
+Ref: "je"."invoice_gst_main"."to" < "je"."sdentity"."id"
+
+Ref: "je"."invoice_gst_main"."gst" < "je"."sdentity"."gst"
+
+Ref: "je"."invoice_gst_history"."product" < "je"."finish_product"."id"
+
+Ref: "je"."leadger_sc"."name" < "je"."scentity"."id"
+
+
+Ref: "je"."leadger_sd"."name" < "je"."sdentity"."id"
+
+Ref: "je"."appuser"."id" < "je"."scentity"."created_by"
+
+Ref: "je"."sdentity"."created_by" < "je"."appuser"."id"
+
+Ref: "je"."product_entry_main"."created_by" < "je"."appuser"."id"
+
+Ref: "je"."sd_payment_entry"."created_by" < "je"."appuser"."id"
+
+Ref: "je"."sc_payment_entry"."created_by" < "je"."appuser"."id"
+
+Ref: "je"."appuser"."id" < "je"."invoice_gst_main"."created_by"
