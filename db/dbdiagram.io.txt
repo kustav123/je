@@ -73,6 +73,49 @@ Table "je"."product_entry_history" {
   }
 }
 
+
+Table "je"."product_st_out_int" {
+  "id" int [pk]
+  "chalan_no" varchar(50)
+  "to" varchar(20)
+  "handover_time" timestamp
+  "handover_by" varchar(10)
+  "product" varchar (200)
+  "remarks" varchar(100)
+}
+
+
+Table "je"."product_st_out_ext" {
+  "id" int [pk]
+  "chalan_no" varchar(50)
+  "to" varchar(20)
+  "handover_time" timestamp
+  "handover_by" varchar(10)
+  "product" varchar (200)
+  "remarks" varchar(100)
+
+}
+
+Table "je"."product_st_in_int" {
+  "id" int [pk]
+  "chalan_no" varchar(50)
+  "from" varchar(20)
+  "handover_time" timestamp
+  "handover_by" varchar(10)
+  "product" varchar (200)
+  "remarks" varchar(100)
+
+}
+Table "je"."product_st_in_ext" {
+  "id" int [pk]
+  "chalan_no" varchar(50)
+  "from" varchar(20)
+  "handover_time" timestamp
+  "handover_by" varchar(10)
+  "product" varchar (200)
+  "remarks" varchar(100)
+
+}
 Table "je"."product_delivary_main" {
   "id" int [pk]
   "chalan_no" varchar(50)
@@ -183,6 +226,24 @@ Table "je"."leadger_sd" {
   "created at" timestamp
 }
 
+Table "je"."asso_int" {
+  "id" int
+  "name" varchar(50)
+  "mobile" varchar(15)
+  "email" varchar(50)
+  "status" varchar(1)
+  "stock" varchar(200)
+}
+Table "je"."asso_ext" {
+  "id" int
+  "name" varchar(50)
+  "mobile" varchar(15)
+  "email" varchar(50)
+  "status" varchar(1)
+  "stock" varchar(200)
+}
+
+
 Table "je"."secuence" {
   "id" int [pk]
   "type" varchar(20)
@@ -252,3 +313,16 @@ Ref:"je"."sd_payment_entry"."created_by" < "je"."appuser"."id"
 Ref:"je"."sc_payment_entry"."created_by" < "je"."appuser"."id"
 
 Ref:"je"."appuser"."id" < "je"."invoice_gst_main"."created_by"
+
+
+Ref: "je"."product_st_out_int"."to" < "je"."asso_int"."id"
+
+Ref: "je"."product_st_out_int"."handover_by" < "je"."appuser"."id"
+
+Ref: "je"."product_st_out_ext"."to" < "je"."asso_ext"."id"
+
+Ref: "je"."product_st_out_ext"."handover_by" < "je"."appuser"."id"
+
+Ref: "je"."product_st_in_int"."from" < "je"."asso_int"."id"
+
+Ref: "je"."product_st_in_ext"."from" < "je"."asso_ext"."id"

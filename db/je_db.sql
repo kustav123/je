@@ -9,7 +9,7 @@ CREATE TABLE `je`.`scentity` (
   `created at` timestamp,
   `status` int,
   `due_ammount` float,
-  `gst` varchar(17),
+  `gst` varchar(255),
   `created_by` varchar(10)
 );
 
@@ -68,6 +68,46 @@ CREATE TABLE `je`.`product_entry_history` (
   `amount` float,
   `remarks` varchar(100),
   PRIMARY KEY (`id`, `entry_id`)
+);
+
+CREATE TABLE `je`.`product_st_out_int` (
+  `id` int PRIMARY KEY,
+  `chalan_no` varchar(50),
+  `to` varchar(20),
+  `handover_time` timestamp,
+  `handover_by` varchar(10),
+  `product` varchar(200),
+  `remarks` varchar(100)
+);
+
+CREATE TABLE `je`.`product_st_out_ext` (
+  `id` int PRIMARY KEY,
+  `chalan_no` varchar(50),
+  `to` varchar(20),
+  `handover_time` timestamp,
+  `handover_by` varchar(10),
+  `product` varchar(200),
+  `remarks` varchar(100)
+);
+
+CREATE TABLE `je`.`product_st_in_int` (
+  `id` int PRIMARY KEY,
+  `chalan_no` varchar(50),
+  `from` varchar(20),
+  `handover_time` timestamp,
+  `handover_by` varchar(10),
+  `product` varchar(200),
+  `remarks` varchar(100)
+);
+
+CREATE TABLE `je`.`product_st_in_ext` (
+  `id` int PRIMARY KEY,
+  `chalan_no` varchar(50),
+  `from` varchar(20),
+  `handover_time` timestamp,
+  `handover_by` varchar(10),
+  `product` varchar(200),
+  `remarks` varchar(100)
 );
 
 CREATE TABLE `je`.`product_delivary_main` (
@@ -174,6 +214,24 @@ CREATE TABLE `je`.`leadger_sd` (
   `created at` timestamp
 );
 
+CREATE TABLE `je`.`asso_int` (
+  `id` int,
+  `name` varchar(50),
+  `mobile` varchar(15),
+  `email` varchar(50),
+  `status` varchar(1),
+  `stock` varchar(200)
+);
+
+CREATE TABLE `je`.`asso_ext` (
+  `id` int,
+  `name` varchar(50),
+  `mobile` varchar(15),
+  `email` varchar(50),
+  `status` varchar(1),
+  `stock` varchar(200)
+);
+
 CREATE TABLE `je`.`secuence` (
   `id` int PRIMARY KEY,
   `type` varchar(20),
@@ -243,3 +301,15 @@ ALTER TABLE `je`.`appuser` ADD FOREIGN KEY (`id`) REFERENCES `je`.`sd_payment_en
 ALTER TABLE `je`.`appuser` ADD FOREIGN KEY (`id`) REFERENCES `je`.`sc_payment_entry` (`created_by`);
 
 ALTER TABLE `je`.`invoice_gst_main` ADD FOREIGN KEY (`created_by`) REFERENCES `je`.`appuser` (`id`);
+
+ALTER TABLE `je`.`asso_int` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_out_int` (`to`);
+
+ALTER TABLE `je`.`appuser` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_out_int` (`handover_by`);
+
+ALTER TABLE `je`.`asso_ext` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_out_ext` (`to`);
+
+ALTER TABLE `je`.`appuser` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_out_ext` (`handover_by`);
+
+ALTER TABLE `je`.`asso_int` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_in_int` (`from`);
+
+ALTER TABLE `je`.`asso_ext` ADD FOREIGN KEY (`id`) REFERENCES `je`.`product_st_in_ext` (`from`);
