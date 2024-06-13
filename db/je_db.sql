@@ -9,7 +9,7 @@ CREATE TABLE `je`.`scentity` (
   `created at` timestamp,
   `status` int,
   `due_ammount` float,
-  `gst` varchar(255),
+  `gst` varchar(17),
   `created_by` varchar(10)
 );
 
