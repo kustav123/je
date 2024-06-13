@@ -2,27 +2,31 @@ CREATE SCHEMA `je`;
 
 CREATE TABLE `je`.`scentity` (
   `id` int PRIMARY KEY,
-  `merchant_name` varchar(255),
+  `merchant_name` varchar(30),
+  `mobile` varchar(15),
+  `email` varchar(50),
   `created at` timestamp,
   `status` int,
   `due_ammount` float,
   `gst` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`sdentity` (
   `id` int PRIMARY KEY,
-  `merchant_name` varchar(255),
+  `merchant_name` varchar(30),
+  `mobile` varchar(15),
+  `email` varchar(50),
   `created at` timestamp,
   `status` int,
   `due_ammount` float,
   `gst` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`raw_product` (
   `id` int PRIMARY KEY,
-  `name` varchar(255),
+  `name` varchar(50),
   `created at` timestamp,
   `unit` varchar(255),
   `current_stock` float,
@@ -31,33 +35,33 @@ CREATE TABLE `je`.`raw_product` (
 
 CREATE TABLE `je`.`finish_product` (
   `id` int PRIMARY KEY,
-  `name` varchar(255),
+  `name` varchar(50),
   `created at` timestamp,
   `unit` varchar(255),
-  `HSN` varchar(255),
+  `HSN` varchar(8),
   `cgst` varchar(255),
-  `sgst` var,
+  `sgst` varchar,
   `current_stock` float,
   `status` int
 );
 
 CREATE TABLE `je`.`product_entry_main` (
   `id` int PRIMARY KEY,
-  `chalan_no` varcharar,
+  `chalan_no` varchar,
   `from` varchar(255),
   `recived_date` date,
   `delivary_mode` varchar(255),
   `created at` timestamp,
   `total_amount` float,
   `remarks` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`product_entry_history` (
   `id` int,
   `entry_id` int,
   `created at` timestamp,
-  `product` varchar(255),
+  `product` varchar(20),
   `qty` float,
   `amount` float,
   `remarks` varchar(255),
@@ -66,14 +70,14 @@ CREATE TABLE `je`.`product_entry_history` (
 
 CREATE TABLE `je`.`product_delivary_main` (
   `id` int PRIMARY KEY,
-  `chalan_no` varcharar,
+  `chalan_no` varchar(50),
   `to` varchar(255),
   `delivary_date` date,
   `delivary_mode` varchar(255),
   `created_at` timestamp,
   `total_amount` float,
   `remarks` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`product_delivery_history` (
@@ -96,7 +100,7 @@ CREATE TABLE `je`.`sc_payment_entry` (
   `hisamount` float,
   `curamount` float,
   `remarks` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`sd_payment_entry` (
@@ -108,12 +112,12 @@ CREATE TABLE `je`.`sd_payment_entry` (
   `hisamount` float,
   `curamount` float,
   `remarks` varchar(255),
-  `created_by` varchar(255)
+  `created_by` varchar(10)
 );
 
 CREATE TABLE `je`.`invoice_gst_main` (
   `id` int PRIMARY KEY,
-  `invoice_no` varcharar,
+  `invoice_no`varchar(30),
   `to` varchar(255),
   `gst` varbinary,
   `inovice_date` date,
@@ -123,7 +127,7 @@ CREATE TABLE `je`.`invoice_gst_main` (
   `total_amount` float,
   `remarks` varchar(255),
   `created_at` timestamp,
-  `created_by` varchar(255),
+  `created_by` varchar(10),
   `paid` bool
 );
 
@@ -133,9 +137,9 @@ CREATE TABLE `je`.`invoice_gst_history` (
   `created at` timestamp,
   `product` varchar(255),
   `qty` float,
-  `HSN` varchar(255),
-  `cgst` varchar(255),
-  `sgst` varchar(255),
+  `HSN` varchar(8),
+  `cgst` varchar(10),
+  `sgst` varchar(10),
   `gross_amount` float,
   `total_ammount` float,
   `remarks` varchar(255),
@@ -144,9 +148,9 @@ CREATE TABLE `je`.`invoice_gst_history` (
 
 CREATE TABLE `je`.`leadger_sc` (
   `id` int PRIMARY KEY,
-  `name` varchar(255),
+  `name` varchar(50),
   `date` date,
-  `type` varchar(255),
+  `type` varchar(20),
   `current_amomount` float,
   `truns_ammount` float,
   `mode` varchar(255),
@@ -157,9 +161,9 @@ CREATE TABLE `je`.`leadger_sc` (
 
 CREATE TABLE `je`.`leadger_sd` (
   `id` int PRIMARY KEY,
-  `name` varchar(255),
+  `name` varchar(50),
   `date` date,
-  `type` varchar(255),
+  `type` varchar(20),
   `current_amomount` float,
   `truns_ammount` float,
   `mode` varchar(255),
@@ -170,17 +174,17 @@ CREATE TABLE `je`.`leadger_sd` (
 
 CREATE TABLE `je`.`secuence` (
   `id` int PRIMARY KEY,
-  `type` varchar(255),
-  `head` varchar(255),
-  `sno` varchar(255),
-  `remarks` varchar(255),
+  `type` varchar(20),
+  `head` varchar(20),
+  `sno` varchar(20),
+  `remarks` varchar(40),
   `status` bool,
   `created at` timestamp
 );
 
 CREATE TABLE `je`.`appinfo` (
   `id` int,
-  `name` varchar(255),
+  `name` varchar(50),
   `logo` varchar(255),
   `address` varchar(255),
   `gstno` varchar(255)
@@ -188,14 +192,16 @@ CREATE TABLE `je`.`appinfo` (
 
 CREATE TABLE `je`.`appuser` (
   `id` int,
-  `name` varchar(255),
+  `name` varchar(50),
+  `mobile` varchar(15),
+  `email` varchar(50),
   `password` varchar(255),
   `role` varchar(255),
   `sign` varchar(255),
-  `status` varchar(255),
-  `is_logedin` varchar(255),
+  `status` varchar(1),
+  `is_logedin` varchar(1),
   `lastlogin_time` timestamp,
-  `lastlogin_from` varchar(255)
+  `lastlogin_from` varchar(30)
 );
 
 ALTER TABLE `je`.`product_entry_history` ADD FOREIGN KEY (`product`) REFERENCES `je`.`raw_product` (`id`);

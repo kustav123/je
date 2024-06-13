@@ -2,6 +2,8 @@
 Table je.scentity  {
   id int pk 
   merchant_name varchar
+  mobile varchar
+  email varchar
   "created at" timestamp
   status int 
   due_ammount float
@@ -13,6 +15,8 @@ Table je.scentity  {
 Table je.sdentity  {
   id int pk 
   merchant_name varchar
+  mobile varchar
+  email varchar
   "created at" timestamp
   status int 
   due_ammount float
@@ -46,7 +50,7 @@ Table je.product_entry_main {
   chalan_no varcharar
   from varchar
   "recived_date" date
-    "delivary_mode" varchar
+  "delivary_mode" varchar
 
   "created at" timestamp
   total_amount float
@@ -111,7 +115,6 @@ Table je.sd_payment_entry {
   curamount float
   remarks varchar
   created_by varchar
- 
 }
 
 
@@ -197,6 +200,8 @@ Table je.appinfo {
 Table je.appuser {
   id int
   name varchar
+  mobile varchar
+  email varchar
   password varchar
   role varchar
   sign  varchar
