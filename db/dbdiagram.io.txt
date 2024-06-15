@@ -1,6 +1,6 @@
 
 Table "je"."scentity" {
-  "id" int [pk]
+  "id" varchar(20) [pk]
   "merchant_name" varchar(30)
   "mobile" varchar(15)
   "email" varchar(50)
@@ -13,12 +13,11 @@ Table "je"."scentity" {
 }
 
 Table "je"."sdentity" {
-  "id" int [pk]
+  "id" varchar(20) [pk]
   "merchant_name" varchar(30)
   "mobile" varchar(15)
   "email" varchar(50)
   "address" varchar(40)
-
   "created at" timestamp
   "status" int
   "due_ammount" float
@@ -27,7 +26,7 @@ Table "je"."sdentity" {
 }
 
 Table "je"."raw_product" {
-  "id" int [pk]
+  "id" varchar(20) [pk]
   "name" varchar(50)
   "created at" timestamp
   "unit" varchar(255)
@@ -36,20 +35,20 @@ Table "je"."raw_product" {
 }
 
 Table "je"."finish_product" {
-  "id" int [pk]
+  "id" varchar(20) [pk]
   "name" varchar(50)
   "created at" timestamp
   "unit" varchar(255)
   "HSN" varchar(8)
   "cgst" varchar(255)
-  "sgst" varchar
+  "sgst" varchar(255)
   "current_stock" float
   "status" int
 }
 
 Table "je"."product_entry_main" {
-  "id" int [pk]
-  "chalan_no" varchar
+  "id" varchar(20) [pk]
+  "chalan_no" varchar(255)
   "from" varchar(20)
   "recived_date" date
   "delivary_mode" varchar(10)
@@ -61,7 +60,7 @@ Table "je"."product_entry_main" {
 
 Table "je"."product_entry_history" {
   "id" int
-  "entry_id" int
+  "entry_id" varchar(20)
   "created at" timestamp
   "product" varchar(20)
   "qty" float
@@ -73,56 +72,53 @@ Table "je"."product_entry_history" {
   }
 }
 
-
 Table "je"."product_st_out_int" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "chalan_no" varchar(50)
   "to" varchar(20)
   "handover_time" timestamp
   "handover_by" varchar(10)
-  "product" varchar (200)
+  "product" varchar(20)
   "remarks" varchar(100)
 }
 
-
 Table "je"."product_st_out_ext" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "chalan_no" varchar(50)
   "to" varchar(20)
   "handover_time" timestamp
   "handover_by" varchar(10)
-  "product" varchar (200)
+  "product" varchar(20)
   "remarks" varchar(100)
-
 }
 
 Table "je"."product_st_in_int" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "chalan_no" varchar(50)
   "from" varchar(20)
   "handover_time" timestamp
   "handover_by" varchar(10)
-  "product" varchar (200)
+  "product" varchar(20)
   "remarks" varchar(100)
-
 }
+
 Table "je"."product_st_in_ext" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "chalan_no" varchar(50)
   "from" varchar(20)
-  "handover_time" timestamp
+  "handover_time" timestamp [default: `now()`]
   "handover_by" varchar(10)
-  "product" varchar (200)
+  "product" varchar(20)
   "remarks" varchar(100)
-
 }
+
 Table "je"."product_delivary_main" {
-  "id" int [pk]
+  "id" varchar(20) [pk]
   "chalan_no" varchar(50)
   "to" varchar(20)
   "delivary_date" date
   "delivary_mode" varchar(10)
-  "created_at" timestamp
+  "created_at" timestamp [default: `now()`]
   "total_amount" float
   "remarks" varchar(100)
   "created_by" varchar(10)
@@ -130,9 +126,9 @@ Table "je"."product_delivary_main" {
 
 Table "je"."product_delivery_history" {
   "id" int
-  "entry_id" int
-  "created_at" timestamp
-  "product" varchar(10)
+  "entry_id" varchar(20)
+  "created_at" timestamp [default: `now()`]
+  "product" varchar(20)
   "qty" float
   "amount" float
   "remarks" varchar(100)
@@ -143,9 +139,9 @@ Table "je"."product_delivery_history" {
 }
 
 Table "je"."sc_payment_entry" {
-  "id" int [pk]
-  "scid" int
-  "created_at" timestamp
+  "id" int [pk, increment]
+  "scid" varchar(20)
+  "created_at" timestamp [default: `now()`]
   "amount" float
   "mode" varchar(10)
   "hisamount" float
@@ -155,9 +151,9 @@ Table "je"."sc_payment_entry" {
 }
 
 Table "je"."sd_payment_entry" {
-  "id" int [pk]
-  "sdid" int
-  "created_at" timestamp
+  "id" int [pk, increment]
+  "sdid" varchar(20)
+  "created_at" timestamp [default: `now()`]
   "amount" float
   "mode" varchar(10)
   "hisamount" float
@@ -167,26 +163,26 @@ Table "je"."sd_payment_entry" {
 }
 
 Table "je"."invoice_gst_main" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "invoice_no" varchar(30)
   "to" varchar(20)
-  "gst" varbinary
+  "gst" varchar(20)
   "inovice_date" date
   "gross_amount" float
   "cgst_amount" float
   "ssgst_amount" float
   "total_amount" float
   "remarks" varchar(100)
-  "created_at" timestamp
+  "created_at" timestamp [default: `now()`]
   "created_by" varchar(10)
   "paid" bool
 }
 
 Table "je"."invoice_gst_history" {
-  "id" int
+  "id" int [pk, increment]
   "entry_id" int
   "created at" timestamp
-  "product" varchar(255)
+  "product" varchar(20)
   "qty" float
   "HSN" varchar(8)
   "cgst" varchar(10)
@@ -194,15 +190,11 @@ Table "je"."invoice_gst_history" {
   "gross_amount" float
   "total_ammount" float
   "remarks" varchar(100)
-
-  Indexes {
-    (id, entry_id) [pk]
-  }
 }
 
 Table "je"."leadger_sc" {
-  "id" int [pk]
-  "name" varchar(50)
+  "id" int [pk, increment]
+  "scid" varchar(20)
   "date" date
   "type" varchar(20)
   "current_amomount" float
@@ -214,8 +206,8 @@ Table "je"."leadger_sc" {
 }
 
 Table "je"."leadger_sd" {
-  "id" int [pk]
-  "name" varchar(50)
+  "id" int [pk, increment]
+  "sdid" varchar(20)
   "date" date
   "type" varchar(20)
   "current_amomount" float
@@ -227,25 +219,25 @@ Table "je"."leadger_sd" {
 }
 
 Table "je"."asso_int" {
-  "id" int
+  "id" varchar(20) [pk]
   "name" varchar(50)
   "mobile" varchar(15)
   "email" varchar(50)
   "status" varchar(1)
-  "stock" varchar(200)
-}
-Table "je"."asso_ext" {
-  "id" int
-  "name" varchar(50)
-  "mobile" varchar(15)
-  "email" varchar(50)
-  "status" varchar(1)
-  "stock" varchar(200)
+  "stock" varchar(20)
 }
 
+Table "je"."asso_ext" {
+  "id" varchar(20) [pk]
+  "name" varchar(50)
+  "mobile" varchar(15)
+  "email" varchar(50)
+  "status" varchar(1)
+  "stock" varchar(20)
+}
 
 Table "je"."secuence" {
-  "id" int [pk]
+  "id" int [pk, increment]
   "type" varchar(20)
   "head" varchar(20)
   "sno" varchar(20)
@@ -263,7 +255,7 @@ Table "je"."appinfo" {
 }
 
 Table "je"."appuser" {
-  "id" int
+  "id" varchar(20) [pk]
   "name" varchar(50)
   "mobile" varchar(15)
   "email" varchar(50)
@@ -276,53 +268,66 @@ Table "je"."appuser" {
   "lastlogin_from" varchar(30)
 }
 
+Ref:"je"."appuser"."id" < "je"."scentity"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."sdentity"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."product_entry_main"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."product_delivary_main"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."sc_payment_entry"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."sd_payment_entry"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."invoice_gst_main"."created_by"
+
+Ref:"je"."appuser"."id" < "je"."product_st_out_int"."handover_by"
+
+Ref:"je"."appuser"."id" < "je"."product_st_out_ext"."handover_by"
+
+Ref:"je"."appuser"."id" < "je"."product_st_in_int"."handover_by"
+
+Ref:"je"."appuser"."id" < "je"."product_st_in_ext"."handover_by"
+
+Ref:"je"."product_entry_main"."id" < "je"."product_entry_history"."entry_id"
+
+Ref:"je"."product_delivary_main"."id" < "je"."product_delivery_history"."entry_id"
+
+Ref:"je"."finish_product"."id" < "je"."product_delivery_history"."product"
+
+Ref:"je"."finish_product"."id" < "je"."invoice_gst_history"."product"
+
+Ref:"je"."invoice_gst_main"."id" < "je"."invoice_gst_history"."entry_id"
+
+Ref:"je"."sdentity"."id" < "je"."sd_payment_entry"."sdid"
+
+Ref:"je"."scentity"."id" < "je"."sc_payment_entry"."scid"
+
+Ref:"je"."scentity"."id" < "je"."leadger_sc"."scid"
+
+Ref:"je"."sdentity"."id" < "je"."product_delivary_main"."to"
+
 Ref:"je"."raw_product"."id" < "je"."product_entry_history"."product"
 
 Ref:"je"."scentity"."id" < "je"."product_entry_main"."from"
 
-Ref:"je"."product_entry_main"."id" < "je"."product_entry_history"."entry_id"
+Ref:"je"."sdentity"."id" < "je"."leadger_sd"."sdid"
 
-Ref:"je"."sc_payment_entry"."scid" < "je"."scentity"."id"
+Ref:"je"."asso_ext"."id" < "je"."product_st_out_ext"."to"
 
-Ref:"je"."sdentity"."id" < "je"."sd_payment_entry"."sdid"
+Ref:"je"."asso_ext"."id" < "je"."product_st_in_int"."from"
 
-Ref:"je"."product_delivary_main"."to" < "je"."sdentity"."id"
+Ref:"je"."asso_int"."id" < "je"."product_st_in_ext"."from"
 
-Ref:"je"."product_delivery_history"."entry_id" < "je"."product_delivary_main"."id"
+Ref:"je"."asso_int"."id" < "je"."product_st_out_int"."to"
 
-Ref:"je"."invoice_gst_history"."entry_id" < "je"."invoice_gst_main"."id"
+Ref:"je"."sdentity"."id" < "je"."invoice_gst_main"."to"
 
-Ref:"je"."invoice_gst_main"."to" < "je"."sdentity"."id"
+Ref:"je"."finish_product"."id" < "je"."product_st_in_int"."product"
 
-Ref:"je"."invoice_gst_main"."gst" < "je"."sdentity"."gst"
+Ref:"je"."raw_product"."id" < "je"."product_st_out_ext"."product"
 
-Ref:"je"."invoice_gst_history"."product" < "je"."finish_product"."id"
+Ref:"je"."raw_product"."id" < "je"."product_st_out_int"."product"
 
-Ref:"je"."leadger_sc"."name" < "je"."scentity"."id"
-
-Ref:"je"."leadger_sd"."name" < "je"."sdentity"."id"
-
-Ref:"je"."appuser"."id" < "je"."scentity"."created_by"
-
-Ref:"je"."sdentity"."created_by" < "je"."appuser"."id"
-
-Ref:"je"."product_entry_main"."created_by" < "je"."appuser"."id"
-
-Ref:"je"."sd_payment_entry"."created_by" < "je"."appuser"."id"
-
-Ref:"je"."sc_payment_entry"."created_by" < "je"."appuser"."id"
-
-Ref:"je"."appuser"."id" < "je"."invoice_gst_main"."created_by"
-
-
-Ref: "je"."product_st_out_int"."to" < "je"."asso_int"."id"
-
-Ref: "je"."product_st_out_int"."handover_by" < "je"."appuser"."id"
-
-Ref: "je"."product_st_out_ext"."to" < "je"."asso_ext"."id"
-
-Ref: "je"."product_st_out_ext"."handover_by" < "je"."appuser"."id"
-
-Ref: "je"."product_st_in_int"."from" < "je"."asso_int"."id"
-
-Ref: "je"."product_st_in_ext"."from" < "je"."asso_ext"."id"
+Ref:"je"."finish_product"."id" < "je"."product_st_in_ext"."product"
