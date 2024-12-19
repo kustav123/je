@@ -1,0 +1,4 @@
+INSERT INTO appinfo (id,name,logo,address,gstno,`type`,apptype,email,cont1,cont2,status) VALUES
+	 (1,'Falcon Electronics','flcn.png','446/2 Durga Apartment, Kalighat, Kolkata  700026','19ASXPK9233A1ZD','p','sc','electronics.falcon@gmail.com','+91 9830050569','+91 9830484889',1),
+	 (2,'Falcon ','fe.png','446/2 Durga Apartment, Kalighat, Kolkata  700026','','p','sc','flcn@email.com','+91 954543434','+91 9830484889',1)
+	 ;

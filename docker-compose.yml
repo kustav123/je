@@ -1,0 +1,43 @@
+version: '3.8'
+
+networks:
+  app_network:
+    name: app
+
+services:
+  app:
+    image: flcnsoft/soft:0.40
+    restart: always
+
+    container_name: app
+    networks:
+      - app_network
+    volumes:
+      - "E:/app/code/.env:/var/www/html/.env"
+    ports:
+      - "80:80"
+    
+
+  mysql:
+    image: mysql:latest
+    restart: always
+
+    container_name: mysqldb
+    networks:
+      - app_network
+    environment:
+      MYSQL_ROOT_PASSWORD: password12345678
+    ports:
+      - "3306:3306"
+    volumes:
+      - "D:/app/db:/var/lib/mysql"
+
+  redis:
+    image: redis:latest
+    restart: always
+
+    container_name: redis
+    networks:
+      - app_network
+    ports:
+      - "6379:6379"

@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+    app_network:
+        name: app
+
+services:
+    app:
+        image: devphp:1.0
+        restart: always
+
+        container_name: appdev
+        networks:
+            - app_network
+        volumes:
+            - "C:/Users/Satam/Documents/GitHub/ssm/app:/var/www/html/"
+        ports:
+            - "8080:80"
+
+    mysql:
+        image: mysql:latest
+        restart: always
+
+        container_name: mysqldb
+        networks:
+            - app_network
+        environment:
+            MYSQL_ROOT_PASSWORD: password12345678
+        ports:
+            - "3306:3306"
+        volumes:
+            - "C:/Users/Satam/Documents/GitHub/ssm/db:/var/lib/mysql"
+
+    redisdev:
+        image: redis:latest
+        restart: always
+
+        container_name: redisdev
+        networks:
+            - app_network
+        ports:
+            - "6379:6379"
