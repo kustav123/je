@@ -36,7 +36,10 @@ class AssociateExtController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.assoext.index');
+        $centeredText = 'External Assosiacte Contol Panel ';
+
+        return view('admin.assoext.index',  compact('centeredText'));
+
     }
 
     public function store(Request $request)
