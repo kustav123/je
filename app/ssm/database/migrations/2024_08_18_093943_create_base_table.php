@@ -125,10 +125,9 @@ return new class extends Migration
             $table->string('cgst', 2)->nullable();
             $table->string('sgst', 2)->nullable();
         });
-
         // Create the secuence table
         Schema::create('secuence', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->autoIncrement();
             $table->string('type', 20)->nullable();
             $table->string('head', 20)->nullable();
             $table->string('sno', 20)->nullable();
@@ -143,6 +142,13 @@ return new class extends Migration
             $table->string('head', 20);
             $table->string('sno', 10)->nullable();
 
+        });
+        Schema::create('audit', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('userid', 20);
+            $table->string('type', 50);
+            $table->text('message', 350);
+            $table->timestamps();
         });
     }
 
@@ -160,5 +166,7 @@ return new class extends Migration
         Schema::dropIfExists('asso_int');
         Schema::dropIfExists('appinfo');
         Schema::dropIfExists('appuser');
+        Schema::dropIfExists('audit');
+
     }
 };

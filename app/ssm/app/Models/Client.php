@@ -21,7 +21,7 @@ class Client extends Model
         'status',
         'due_ammount',
         'gst',
-        'job',
+        'state',
         'remarks',
         'created_by',
         'created_at',

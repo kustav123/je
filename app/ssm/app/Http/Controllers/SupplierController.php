@@ -56,9 +56,18 @@ class SupplierController extends Controller
               'mobile.unique' => 'The mobile number you entered is already added as supplier.'
           ]);
 
+          $sequence = DB::table('secuence')
+          ->select('sno', 'head')
+          ->where('type', 'supplier')
+          ->lockForUpdate()
+          ->first();
+          $head =  $sequence->head ;
+          $newclid = $sequence->sno + 1;
+          $newclid = str_pad($newclid, 5, '0', STR_PAD_LEFT);
+          $newclid =  $head . '-' . $newclid ;
 
           Suppliers::create([
-              'id' => 'S_' . mt_rand(1111, 9999),
+              'id' =>$newclid,
               'merchant_name' => $request->name,
               'email' => $request->email,
               'mobile' => $request->mobile,
@@ -68,7 +77,9 @@ class SupplierController extends Controller
               'status' => '1',
               'created_by' => Auth::user()->id
           ]);
-
+          DB::table('secuence')
+          ->where('type', 'supplier')
+          ->increment('sno');
           $msg = "Successfully supplier created";
 
       } else if ($purpose == 'update') {

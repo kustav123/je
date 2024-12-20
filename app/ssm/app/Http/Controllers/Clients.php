@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Client;
+use App\Models\Jobs;
+use Illuminate\Support\Facades\Log;
+use App\Models\AuditLogModel;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables as DataTables;
+
 
 class Clients extends Controller
 {
@@ -15,12 +19,13 @@ class Clients extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Client::select(['id as userId', 'name', 'email', 'mobile', 'mobile_additonal', 'address', 'status', 'due_ammount', 'gst',  'remarks', 'created_by', 'created_at']);
-            if (Auth::user()->role !== 'AD') {
-                $data->where('status', 1);
-            }
 
-            $data->orderBy('created_at', 'desc');
+            $data = Client::select(['id as userId', 'name', 'email', 'mobile', 'state','mobile_additonal', 'address', 'status', 'due_ammount', 'gst',  'remarks', 'created_by', 'created_at']);
+                if (Auth::user()->role !== 'AD') {
+                    $data->where('status', 1);
+                }
+
+                $data -> orderBy('created_at', 'desc');
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -42,9 +47,8 @@ class Clients extends Controller
         if ($purpose == 'insert') {
             $request->validate([
                 'name' => 'required',
-                'mobile' => 'required|numeric|digits:10|unique:client,mobile',
             ], [
-                'mobile.unique' => 'The mobile number you entered is already added as client.',
+                'mobile.unique' => 'The mobile number you entered is already added as client.'
             ]);
 
             $sequence = DB::table('secuence')
@@ -58,27 +62,30 @@ class Clients extends Controller
             $newclid = str_pad($newclid, 5, '0', STR_PAD_LEFT);
             $newclid =  $head . '-' . $newclid ;
 
-            //secunce code ta ure geche
             Client::create([
                 'id' => $newclid,
                 'name' => $request->name,
                 'email' => $request->email,
                 'mobile' => $request->mobile,
-                'mobile_additonal' => $request->mobile_additonal,
+                'mobile_additonal' => $request ->mobile_additonal,
                 'address' => $request->address,
                 'gst' => $request->gst,
                 'remarks' => $request->remarks,
                 'status' => '1',
-                'created_by' => Auth::user()->id,
+                'state' =>  $request->state,
+                'created_by' => Auth::user()->id
             ]);
             DB::table('secuence')
                  ->where('type', 'client')
                  ->increment('sno');
             $msg = "Successfully client created";
             Cache::forget('act_users');
-            Cache::forget('total_client');
+            Cache::forget( 'total_client');
             // Cache::forget('client_main');
-
+            AuditLogModel::addAudit(Auth::user()->id,
+            'Client created',
+            "New client created successfully id {$newclid} "
+        );
 
         } else if ($purpose == 'update') {
             $request->validate([
@@ -88,12 +95,18 @@ class Clients extends Controller
             Client::where('id', $request->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'mobile' => $request->mobile,
+                'mobile_additonal' => $request ->mobile_additonal,
                 'address' => $request->address,
                 'gst' => $request->gst,
+                'state' =>  $request->state,
                 'remarks' => $request->remarks,
-                'mobile_additonal' => $request->mobile_additonal,
 
             ]);
+            AuditLogModel::addAudit(Auth::user()->id,
+            'Client Updated',
+            " {$request->id} Info Updated"
+        );
             $msg = "Successfully updated client";
         }
 
@@ -105,7 +118,7 @@ class Clients extends Controller
 
     public function edit(Request $request)
     {
-        $user = Client::select(['id as userId', 'name', 'email', 'mobile', 'mobile_additonal', 'address', 'gst', 'job'])->where(['id' => $request->id])->first();
+        $user  = Client::select(['id as userId', 'state','name', 'email', 'mobile', 'mobile_additonal','address','gst', 'remarks'])->where(['id' => $request->id])->first();
 
         return response()->json($user);
     }
@@ -116,14 +129,47 @@ class Clients extends Controller
 
     //     return Response()->json($user);
     // }
+
+
+    // public function check(Request $request)
+    // {
+    //     $clid = $request->id;
+
+    //     $jobCount = Jobs::where('clid', $clid)->count();
+
+    //     if ($jobCount === 0) {
+    //         return response()->json(['result' => 'yes']);
+    //     } else {
+    //         return response()->json(['result' => 'false']);
+    //     }
+    // }
+
+
+    // public function delete(Request $request)
+    // {
+    //     $user = Client::where('id', $request->id)->delete();
+    //     AuditLogModel::addAudit(Auth::user()->id,
+    //         'Client Deleted',
+    //         " {$request->id} Deleted"
+    //      );
+
+    //     Cache::forget('act_users');
+    //     Cache::forget('total_client');
+    //     return Response()->json($user);
+
+    // }
     public function disable(Request $request)
     {
         $user = Client::where('id', $request->id)->update([
-            'status' => '0',
+            'status' => '0'
 
         ]
 
         );
+        AuditLogModel::addAudit(Auth::user()->id,
+        'Client Disabled',
+        " {$request->id} Didabled"
+    );
         Cache::forget('act_users');
         Cache::forget('total_client');
         return Response()->json($user);
@@ -132,7 +178,7 @@ class Clients extends Controller
     public function enable(Request $request)
     {
         $user = Client::where('id', $request->id)->update([
-            'status' => '1',
+            'status' => '1'
 
         ]
 
@@ -145,9 +191,9 @@ class Clients extends Controller
     public function getcl(Request $request)
     {
 
-        $user = Client::select(['id as clid', 'name', 'email', 'mobile', 'mobile_additonal', 'address', 'gst', 'due_ammount', 'remarks'])
-            ->where(['mobile' => $request->mobile])
-            ->get();
+        $user = Client::select(['id as clid', 'name', 'state','email', 'mobile', 'mobile_additonal','address','gst', 'due_ammount', 'remarks'])
+        ->where(['mobile' => $request->mobile])
+        ->get();
         if ($user->isEmpty()) {
             return response()->json(['message' => 'ClientNotFound'], 404);
         }
@@ -156,9 +202,9 @@ class Clients extends Controller
     public function getclbyname(Request $request)
     {
 
-        $user = Client::select(['id as clid', 'name', 'email', 'mobile', 'mobile_additonal', 'address', 'gst', 'due_ammount', 'remarks'])
-            ->where('name', 'like', '%' . $request->name . '%')
-            ->get();
+        $user = Client::select(['id as clid', 'name', 'state','email', 'mobile', 'mobile_additonal','address', 'gst', 'due_ammount', 'remarks'])
+        ->where('name', 'like', '%' . $request->name . '%')
+        ->get();
         if ($user->isEmpty()) {
             return response()->json(['message' => 'ClientNotFound'], 404);
         }
@@ -166,9 +212,10 @@ class Clients extends Controller
     }
     public function getclid($id)
     {
-        $user = Client::select(['name', 'email', 'mobile', 'mobile_additonal', 'address', 'gst'])
-            ->where(['id' => $id])
-            ->first();
+
+        $user  = Client::select(['name', 'email', 'state','mobile', 'mobile_additonal','address','gst'])
+        ->where(['id' => $id])
+        ->first();
 
         return $user;
     }

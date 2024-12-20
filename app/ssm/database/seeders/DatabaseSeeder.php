@@ -32,6 +32,60 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
         ]);
 
+        DB::table('secuence')->insert([
+
+            [
+                'type' => 'client',
+                'head' => 'CL',
+                'remarks' => 'client',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'supplier',
+                'head' => 'S',
+                'remarks' => 'supplier',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'asso_ext',
+                'head' => 'AE',
+                'remarks' => 'external assosite',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'asso_int',
+                'head' => 'AI',
+                'remarks' => 'internal assosite',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'rp',
+                'head' => 'R',
+                'remarks' => 'Raw Product',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'fp',
+                'head' => 'F',
+                'remarks' => 'Raw Product',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'paysup',
+                'head' => 'SP',
+                'remarks' => 'Supp Payment',
+                'status' => 1,
+                'sno' => '0'
+            ],
+
+        ]);
+
 
         // DB::table('secuence')->insert([
         //     [

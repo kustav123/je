@@ -129,19 +129,13 @@ $('#staffForm').on('submit', function (e) {
         },
         success: function (data) {
             // Handle success
-            console.log('Data successfully inserted:', data); // Log success message for debugging
+            // console.log('Data successfully inserted:', data); // Log success message for debugging
             $.notify(data.message, "success");
             $('#addStaffModal').modal('hide');
 
-            // Prompt the user
-            if (confirm('Do you want to create a job for this client?')) {
-                // Redirect to add job page with mobile number
-                let mobileNumber = $('#mobile').val(); // Assuming the mobile input has id="mobile"
-                window.location.href = `/addjobpage?mob=${mobileNumber}`;
-            } else {
-                // Reload the current page
+
                 window.location.href = '/clients'; // Redirect to /clients
-            }
+
         },
         error: function (xhr, status, error) {
             // Handle errors
@@ -177,7 +171,10 @@ $('#staffForm').on('submit', function (e) {
                 $('#mobile').val(res.mobile);
                 $('#address').val(res.address)
                 $('#state').val(res.state);
+                $('#gst').val(res.gst);
+                $('#remarks').val(res.remarks);
                 $("#btn-save").html('Update');
+
             }
         });
     }
