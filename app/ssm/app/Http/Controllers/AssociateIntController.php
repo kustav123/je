@@ -27,8 +27,9 @@ class AssociateIntController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.assoint.index');
-    }
+        $centeredText = 'Internal Assosiacte Contol Panel ';
+
+        return view('admin.assoint.index',  compact('centeredText'));    }
 
     public function store(Request $request)
     {
