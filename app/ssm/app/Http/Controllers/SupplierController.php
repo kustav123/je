@@ -23,6 +23,7 @@ class SupplierController extends Controller
                 'mobile',
                 'email',
                 'address',
+                'state',
                 'due_ammount',
                 'gst',
                 'remarks',
@@ -41,7 +42,10 @@ class SupplierController extends Controller
             ->rawColumns(['action'])
             ->make(true);
     }
-    return view('admin.supplier.index');
+    $centeredText = 'Supplier Contol Panel ';
+
+    return view('admin.supplier.index',  compact('centeredText'));
+
   }
 
   public function store(Request $request)
@@ -71,7 +75,9 @@ class SupplierController extends Controller
               'merchant_name' => $request->name,
               'email' => $request->email,
               'mobile' => $request->mobile,
+              'mobile_additonal' => $request ->mobile_additonal,
               'address' => $request->address,
+              'state' =>  $request->state,
               'gst' => $request->gst,
               'remarks' => $request->remarks,
               'status' => '1',
@@ -93,7 +99,10 @@ class SupplierController extends Controller
           Suppliers::where('id', $request->id)->update([
               'merchant_name' => $request->name,
               'email' => $request->email,
+              'mobile' => $request->mobile,
+              'mobile_additonal' => $request ->mobile_additonal,
               'address' => $request->address,
+              'state' =>  $request->state,
               'gst' => $request->gst,
               'remarks' => $request->remarks,
           ]);
@@ -115,6 +124,8 @@ class SupplierController extends Controller
             'id as sid',
             'merchant_name',
             'mobile',
+            'mobile_additonal',
+            'state',
             'email',
             'address',
             'gst',

@@ -56,24 +56,75 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Mobile</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="mobile" name="mobile"
-                                    placeholder="Enter valid mobile" required="" maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10-digit Indian mobile number">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="mobile" class="control-label">Mobile</label>
+                                    <input type="text" class="form-control" id="mobile" name="mobile"
+                                        placeholder="Enter valid mobile" maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10-digit Indian mobile number">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="mobile_additonal" class="control-label">Office Number</label>
+                                    <input type="text" class="form-control" id="mobile_additonal" name="mobile_additonal"
+                                        placeholder="Enter valid mobile" maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10-digit Indian mobile number">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter Email address" maxlength="30">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="state" class="control-label">State</label>
+                                    <select class="form-control" id="state" name="state">
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal" selected>West Bengal</option>
+                                        <option value="Andaman & Nicobar (UT)">Andaman & Nicobar (UT)</option>
+                                        <option value="Chandigarh (UT)">Chandigarh (UT)</option>
+                                        <option value="Dadra & Nagar Haveli (UT)">Dadra & Nagar Haveli (UT)</option>
+                                        <option value="Daman & Diu (UT)">Daman & Diu (UT)</option>
+                                        <option value="Lakshadweep (UT)">Lakshadweep (UT)</option>
+                                        <option value="Puducherry (UT)">Puducherry (UT)</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Enter Email address" maxlength="30">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Address</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="address" name="address"
-                                    placeholder="Enter Address" maxlength="40">
+                                    placeholder="Enter Address" maxlength="255">
                             </div>
                         </div>
                         <div class="form-group">
@@ -107,8 +158,7 @@
 
 
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" id="btn-save">Add Client
-                            </button>
+                            <button type="submit" class="btn btn-primary" id="btn-save">Add Supplier</button>
                         </div>
                     </form>
                 </div>

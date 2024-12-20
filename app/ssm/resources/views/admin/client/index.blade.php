@@ -134,7 +134,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Address</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" id="address" name="address" placeholder="Enter Address" maxlength="690" rows="5"></textarea>
+                                <textarea class="form-control" id="address" name="address" placeholder="Enter Address" maxlength="255" rows="5"></textarea>
                             </div>
                         </div>
 

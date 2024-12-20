@@ -31,7 +31,22 @@
                 },
                 {
                     data: 'address',
-                    name: 'address'
+                    name: 'address',
+                    className: 'wrap-text',
+                    render: function(data, type, row) {
+                        // Check if the address is blank and return formatted result
+                        var address = row.address ? row.address : '';
+                        var state = row.state ? row.state : '';
+
+                        if (address && state) {
+                            return address + ' - ' + state;
+                        } else if (state) {
+                            return state;
+                        } else {
+                            return address;
+                        }
+                    }
+
                 },
                 {
                     data: 'gst',
@@ -125,6 +140,8 @@ $('#suppForm').on('submit', function (e) {
                 $('#mobile').val(res.mobile);
                 $('#mobile').attr('disabled', true);
                 $('#address').val(res.address)
+                $('#state').val(res.state);
+                $('#gst').val(res.gst);
                 $('#remarks').val(res.remarks);
                 $("#btn-save").html('Update');
 
