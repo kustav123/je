@@ -14,8 +14,7 @@ class User extends Authenticatable
     protected $table = 'appuser';
     public $keyType = 'string';
 
-    const UPDATED_AT = null;
-    const CREATED_AT = null;
+
 
     /**
      * The attributes that are mass assignable.

@@ -199,6 +199,7 @@
                     </div>
                 </form>
             </div>
+        </div>
 
 
         @include('logics/addstk')

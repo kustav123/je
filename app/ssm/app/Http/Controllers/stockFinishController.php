@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\Log;
 
 class stockFinishController extends Controller
 {
-    public function addnewPage(Request $request)
+    public function addnewPage()
 
     {
         $fp = new FinishproductController();
         $lp = $fp ->getfp() ;
         // Log::info($lp);
-       return view("inv.stkentfinish.addStock", [
-        "lp"=> $lp
+      $centeredText = 'Finish Product Stock Entry';
 
+       return view("inv.stkentfinish.addStock", [
+        "lp"=> $lp,
+        "centeredText" => $centeredText
     ]);
     }
 

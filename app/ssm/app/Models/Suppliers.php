@@ -9,22 +9,21 @@ class Suppliers extends Model
 {
     use HasFactory;
     protected $table = 'supplier';
-    const UPDATED_AT = null;
-protected $fillable = [
-    'id',
-    'merchant_name',
-    'mobile',
-    'mobile_additonal',
-    'email',
-    'address',
-    'created_at',
-    'created_by',
-    'status',
-    'state',
-    'due_ammount',
-    'gst',
-    'remarks',
-];
+    protected $fillable = [
+        'id',
+        'merchant_name',
+        'mobile',
+        'mobile_additonal',
+        'email',
+        'address',
+        'created_at',
+        'created_by',
+        'status',
+        'state',
+        'due_ammount',
+        'gst',
+        'remarks',
+    ];
 
 
     public function productEntries()

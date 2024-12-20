@@ -55,44 +55,46 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Mobile</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="mobile" name="mobile"
-                                    placeholder="Enter valid mobile" required="" maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10-digit Indian mobile number">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter Email address" maxlength="50">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="mobile" class="control-label">Mobile</label>
+                                    <input type="text" class="form-control" id="mobile" name="mobile"
+                                        placeholder="Enter valid mobile" required="" maxlength="10"
+                                        pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10-digit Indian mobile number">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Enter Email address" maxlength="50">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Address</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="address" name="address"
-                                    placeholder="Enter Address" maxlength="100">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label id="uidgl" class="col-sm-2 control-label">UID Type</label>
-                            <div class="col-sm-12">
-                                <select class="form-control" id="uidtype" name="uidtype">
-                                    <option value="DL">N/A</option>
-                                    <option value="DL">DL</option>
-                                    <option value="EPIC">EPIC</option>
-                                    <option value="PAN">PAN</option>
-                                    <option value="AADHAR">AADHAR</option>
-                                    <option value="EPIC">EPIC</option>
-                                </select>
-                            </div>
-                        </div>
+                                <textarea class="form-control" id="address" name="address" placeholder="Enter Address" maxlength="255" rows="5"></textarea>
 
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label id="uidl"class="col-sm-2 control-label">UID</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="uid" name="uid" placeholder="Enter UID" maxlength="20">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label id="uidgl" class="col-sm-2 control-label"> Type</label>
+                                    <select class="form-control" id="uidtype" name="uidtype">
+                                        <option value="">N/A</option>
+                                        <option value="DL">DL</option>
+                                        <option value="EPIC">EPIC</option>
+                                        <option value="PAN">PAN</option>
+                                        <option value="AADHAR">AADHAR</option>
+                                        <option value="EPIC">EPIC</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label id="uidl"class="col-sm-2 control-label">UID</label>
+                                    <input type="text" class="form-control" id="uid" name="uid"
+                                        placeholder="Enter UID" maxlength="20">
+                                </div>
                             </div>
                         </div>
 

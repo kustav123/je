@@ -151,11 +151,10 @@ class RawproductController extends Controller
   }
   public function getrp()
     {
-        $item = Cache::rememberForever('rawprod', function () {
-        return Rawproducts::select([
+        $item=Rawproducts::select([
             'id', 'name', 'unit', 'current_stock'
             ])->where('status',1) ->get();
-        });
+
         return $item;
     }
 

@@ -50,6 +50,8 @@ return new class extends Migration
             $table->timestamp('lastlogin_time')->useCurrent()->useCurrentOnUpdate();
             $table->string('lastlogin_from', 30)->nullable();
             $table->string('username', 20)->notNullable();
+            $table->timestamps();
+
         });
 
         // Create the client table
@@ -65,9 +67,11 @@ return new class extends Migration
             $table->string('gst', 17)->nullable();
             $table->string('remarks', 100)->nullable();
             $table->string('created_by', 10)->nullable();
-            $table->timestamp('created_at')->useCurrent();
             $table->string('mobile_additonal', 20)->nullable();
+            $table->timestamps();
+
             $table->foreign('created_by')->references('id')->on('appuser');
+
         });
         Schema::create('supplier', function (Blueprint $table) {
             $table->string('id', 20)->primary();
@@ -77,12 +81,12 @@ return new class extends Migration
             $table->string('email', 255)->nullable();
             $table->string('address', 255)->nullable();
             $table->string('state', 100)->nullable();
-            $table->timestamp('created_at')->useCurrent();
             $table->string('created_by', 10);
             $table->tinyInteger('status');
             $table->decimal('due_ammount', 10, 2)->default(0.00);
             $table->string('gst', 17)->nullable();
             $table->string('remarks', 100)->nullable();
+            $table->timestamps();
             $table->foreign('created_by')->references('id')->on('appuser');
         });
 
@@ -95,8 +99,7 @@ return new class extends Migration
             $table->string('address', 255)->nullable();
             $table->string('uidtype', 255)->nullable();
             $table->string('uid', 255)->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
             $table->string('created_by', 10);
             $table->foreign('created_by')->references('id')->on('appuser');
 
@@ -110,8 +113,7 @@ return new class extends Migration
             $table->string('address', 255)->nullable();
             $table->string('uidtype', 255)->nullable();
             $table->string('uid', 255)->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
             $table->string('created_by', 10);
             $table->foreign('created_by')->references('id')->on('appuser');
 

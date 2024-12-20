@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductEntryHist;
 use App\Models\ProductEntryMain;
-use App\Models\Rawproducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class stockController extends Controller
 {
-    public function addnewPage(Request $request)
+    public function addnewPage()
 
     {
         $rp = new RawproductController();

@@ -150,6 +150,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('stkinext')->group(function () {
         Route::get('/', [StkInControler::class, 'indexext']);
     });
+    Route::prefix('getstkhis')->group(function () {
+        Route::get('/', [StkOutControler::class, 'stockinhisint']);
+        Route::get('/supp', [SupplierController::class, 'getbyproduct']);
+
+    });
     Route::get('/fetch-by-clid', [scLedgerController::class, 'fetchByClid']);
 
     Route::get('/', [AdminController::class, 'index'])->middleware('auth');

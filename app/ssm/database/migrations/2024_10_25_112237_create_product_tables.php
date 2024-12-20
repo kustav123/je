@@ -21,8 +21,7 @@ return new class extends Migration
             $table->integer('current_stock')->default(0);
             $table->tinyInteger('status');
             $table->string('remarks', 255)->nullable();
-            $table->timestamp('created_at')->nullable();
-
+            $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('appuser')
                   ->onDelete('restrict')
@@ -36,7 +35,7 @@ return new class extends Migration
             $table->integer('current_stock')->default(0);
             $table->tinyInteger('status');
             $table->string('remarks', 255)->nullable();
-            $table->timestamp('created_at')->nullable()->default(null);
+            $table->timestamps();
             $table->foreign('created_by')
                 ->references('id')
                 ->on('appuser')
@@ -50,14 +49,12 @@ return new class extends Migration
             $table->string('from', 20);
             $table->date('recived_date')->nullable();
             $table->string('delivary_mode', 10)->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
             $table->double('total_amount')->nullable();
             $table->double('total_cgst')->nullable();
             $table->double('total_sgst')->nullable();
             $table->string('remarks', 100)->nullable();
             $table->string('created_by', 10)->nullable();
-
+            $table->timestamps();
             $table->foreign('created_by')->references('id')->on('appuser')->onDelete('cascade');
             $table->foreign('from')->references('id')->on('supplier');
         });
@@ -82,12 +79,11 @@ return new class extends Migration
         Schema::create('product_st_out_ext', function (Blueprint $table) {
             $table->string('id', 10)->primary();
             $table->string('to', 20)->nullable()->index();
-            // $table->timestamp('entry_time')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('entry_time')->nullable()->useCurrent();
             $table->date('date')->nullable();
             $table->string('entry_by', 10)->nullable();
             $table->string('remarks', 100)->nullable();
-            $table->timestamp('created_at')->nullable();
-
+            $table->timestamps();
         });
         Schema::create('product_st_out_ext_dtl', function (Blueprint $table) {
             $table->id()->autoIncrement()->primary();
@@ -108,6 +104,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('entry_by', 10)->nullable();
             $table->string('remarks', 100)->nullable();
+            $table->timestamps();
 
             $table->foreign('to')->references('id')->on('asso_int');
         });
@@ -149,7 +146,7 @@ return new class extends Migration
         Schema::create('rawproduct_adj_his_ext', function (Blueprint $table) {
             $table->string('id', 10)->primary();
             $table->string('from', 20)->nullable()->comment('Assosiate ID');
-            $table->timestamp('entry_time');
+            $table->timestamp('entry_time')->useCurrent();
             $table->date('date')->nullable();
             $table->string('product', 20)->nullable();
             $table->integer('qty')->nullable();
@@ -159,11 +156,12 @@ return new class extends Migration
             $table->foreign('product')->references('id')->on('raw_product');
             $table->index('from');
             $table->index('product');
+            $table->timestamps();
         });
         Schema::create('rawproduct_adj_his_int', function (Blueprint $table) {
             $table->string('id', 10)->primary();
             $table->string('from', 20)->comment('Assosiate ID');
-            $table->timestamp('entry_time')->nullable();
+            $table->timestamp('entry_time')->useCurrent();
             $table->date('date')->nullable();
             $table->string('product', 20);
             $table->integer('qty');
@@ -173,6 +171,7 @@ return new class extends Migration
             $table->foreign('product')->references('id')->on('raw_product');
             $table->index('from');
             $table->index('product');
+            $table->timestamps();
         });
 
         //Finish Product Sock Receive from associate
@@ -182,10 +181,9 @@ return new class extends Migration
             $table->string('product', 20);
             $table->date('date')->nullable();
             $table->integer('qty')->nullable();
-
+            $table->timestamps();
             $table->foreign('aid')->references('id')->on('asso_ext');
             $table->foreign('product')->references('id')->on('finish_product');
-
             $table->index('aid');
             $table->index('product');
         });
@@ -195,10 +193,9 @@ return new class extends Migration
             $table->string('product', 20);
             $table->date('date')->nullable();
             $table->integer('qty')->nullable();
-
-            $table->foreign('aid')->references('id')->on('asso_ext');
+            $table->timestamps();
+            $table->foreign('aid')->references('id')->on('asso_int');
             $table->foreign('product')->references('id')->on('finish_product');
-
             $table->index('aid');
             $table->index('product');
         });

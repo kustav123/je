@@ -21,10 +21,12 @@ class StkOutControler extends Controller
 
         $rp = new RawproductController();
         $lp = $rp ->getrp() ;
-
+        $centeredText = 'Raw Stock Trunsfer to Internal Associate';
+log::info($lp);
         return view('process.assout.index', [
         "lp"=> $lp,
-        "type" => 'int'
+        "type" => 'int',
+        "centeredText" => $centeredText,
     ]);
     }
     public function indexext()
@@ -32,10 +34,13 @@ class StkOutControler extends Controller
 
         $rp = new RawproductController();
         $lp = $rp ->getrp() ;
+        $centeredText = 'Raw Stock Trunsfer to External Associate';
 
         return view('process.assout.index', [
         "lp"=> $lp,
-        "type" => 'ext'
+        "type" => 'ext',
+        "centeredText" => $centeredText,
+
     ]);
     }
 
@@ -185,7 +190,7 @@ class StkOutControler extends Controller
 
         $product = $request -> clid;
 
-        Log::info($product);
+        // Log::info($product);
 
         $extData = ProductStOutExtDtl::with('productStOutExt.assoext')
         ->where('product', $product)
@@ -231,7 +236,8 @@ class StkOutControler extends Controller
         // ->rawColumns(['action'])
         ->make(true);
     }
-    return view('inv.raw.list', ['clid' => $product]);
+    $centeredText = 'Product Transaction  History';
+    return view('inv.raw.list', ['clid' => $product, 'centeredText' => $centeredText ]);
     }
 
 

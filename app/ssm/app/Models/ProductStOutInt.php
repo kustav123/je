@@ -12,8 +12,6 @@ class ProductStOutInt extends Model
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
-    const UPDATED_AT = null;
-    const CREATED_AT = null;
 
     protected $fillable = [
         'id', 'to', 'entry_time', 'date', 'entry_by', 'remarks'

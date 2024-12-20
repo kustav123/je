@@ -10,7 +10,6 @@ class Finishproducts extends Model
     use HasFactory;
     protected $table = 'finish_product';
 
-    const UPDATED_AT = null;
 
     // Specify the fillable attributes
     protected $fillable = [

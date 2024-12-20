@@ -11,7 +11,6 @@ class Rawproducts extends Model
     protected $table = 'raw_product';
 
     // Disable the 'updated_at' timestamp
-    const UPDATED_AT = null;
 
     // Specify the fillable attributes
     protected $fillable = [

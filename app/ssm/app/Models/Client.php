@@ -10,7 +10,6 @@ class Client extends Model
     use HasFactory;
 
     protected $table = 'client';
-    const UPDATED_AT = null;
     protected $fillable = [
         'id',
         'name',

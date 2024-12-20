@@ -69,12 +69,11 @@
 
 
     <!-- Modal -->
-<div class="modal fade" id="productHistoryModal" tabindex="-1" aria-labelledby="productHistoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="productHistoryModal" tabindex="-1" aria-labelledby="productHistoryModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="productHistoryModalLabel">Product History</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="productHistoryModalLabel">Challan Detail</h5>
         </div>
         <div class="modal-body">
           <table class="table table-striped">
@@ -90,7 +89,7 @@
           </table>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close Modal</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
         </div>
       </div>
     </div>

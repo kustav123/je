@@ -90,6 +90,55 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'sno' => '0'
             ],
+            [
+                'type' => 'stkintout',
+                'head' => 'TI',
+                'remarks' => 'Stock Internal Transfer',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'stkextout',
+                'head' => 'TE',
+                'remarks' => 'Stock External Transfer',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'stlintin',
+                'head' => 'RI',
+                'remarks' => 'Stock Internal Return',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'stlintin',
+                'head' => 'ST',
+                'remarks' => 'Stock Internal Adjustments',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'fstlintin',
+                'head' => 'ST',
+                'remarks' => 'Stock Internal Recives',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'stlextit',
+                'head' => 'ST',
+                'remarks' => 'Stock Exnternal Adjustments',
+                'status' => 1,
+                'sno' => '0'
+            ],
+            [
+                'type' => 'fstlextin',
+                'head' => 'ST',
+                'remarks' => 'Stock External Recives',
+                'status' => 1,
+                'sno' => '0'
+            ],
 
         ]);
 

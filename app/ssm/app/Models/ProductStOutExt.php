@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductStOutExt extends Model
 {
     use HasFactory;
-    const UPDATED_AT = null;
-    const CREATED_AT = null;
     protected $table = 'product_st_out_ext';
     protected $primaryKey = 'id';
     public $incrementing = false;

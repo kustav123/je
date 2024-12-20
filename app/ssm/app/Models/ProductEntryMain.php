@@ -37,8 +37,7 @@ class ProductEntryMain extends Model
     ];
 
     // If the timestamps columns are named differently, define them here
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+  
     public function history()
     {
         return $this->hasMany(ProductEntryHist::class, 'entry_id', 'id');

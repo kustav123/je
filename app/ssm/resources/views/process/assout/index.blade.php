@@ -177,7 +177,7 @@
                 </form>
             </div>
 
-
+</div>
         @include('logics/stkout')
         @include('logics/searchia')
 
