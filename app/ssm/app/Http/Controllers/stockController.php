@@ -19,8 +19,12 @@ class stockController extends Controller
         $rp = new RawproductController();
         $lp = $rp ->getrp() ;
         // Log::info($lp);
+        $centeredText = 'Raw Product Stock Entry';
+
        return view("inv.stkent.addStock", [
-        "lp"=> $lp
+        "lp"=> $lp,
+        "centeredText" => $centeredText
+
 
     ]);
     }

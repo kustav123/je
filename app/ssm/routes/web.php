@@ -11,6 +11,7 @@ use App\Http\Controllers\FinishproductController;
 use App\Http\Controllers\HsnController;
 use App\Http\Controllers\RawproductController;
 use App\Http\Controllers\ReloadCacheController;
+use App\Http\Controllers\scLedgerController;
 use App\Http\Controllers\Staffs;
 use App\Http\Controllers\StkInControler;
 use App\Http\Controllers\StkOutControler;
@@ -149,6 +150,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('stkinext')->group(function () {
         Route::get('/', [StkInControler::class, 'indexext']);
     });
+    Route::get('/fetch-by-clid', [scLedgerController::class, 'fetchByClid']);
+
     Route::get('/', [AdminController::class, 'index'])->middleware('auth');
     Route::post('/log', [AdminController::class, 'fetchLog'])->middleware('auth');
 

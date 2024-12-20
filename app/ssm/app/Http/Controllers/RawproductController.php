@@ -40,9 +40,10 @@ class RawproductController extends Controller
             ->make(true);
 
     }
+    $centeredText = 'Raw Product Management';
 
-    return view('inv.raw.index');
-  }
+    return view('inv.raw.index',  compact('centeredText'));
+}
 
   public function store(Request $request)
   {

@@ -96,8 +96,7 @@ class StkInControler extends Controller
                 'date' => $request ->date,
                 ]
                 );
-
-        }
+            }
         DB::table('secuence')
         ->where('type', 'stlintin')
         ->increment('sno');

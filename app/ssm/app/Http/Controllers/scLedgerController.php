@@ -43,10 +43,13 @@ class scLedgerController extends Controller
         $clid = $request->input('clid');
         $page = $request->input('page', 1);
 
+
         $records = LeadgerSc::fetchByClid($clid );
 
         // Log::info($records);
+        $centeredText = 'Supplier Ledger ';
 
-        return view('report.supLed', ['records' => $records]);
+
+        return view('report.supLed', ['records' => $records, 'centeredText' => $centeredText, ]);
     }
 }

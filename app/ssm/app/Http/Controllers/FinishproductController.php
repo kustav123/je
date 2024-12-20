@@ -39,8 +39,9 @@ class FinishproductController extends Controller
             ->make(true);
 
     }
+    $centeredText = 'Finish Product Management';
 
-    return view('inv.finish.index');
+    return view('inv.finish.index',  compact('centeredText'));
   }
   public function store(Request $request)
   {

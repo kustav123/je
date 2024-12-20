@@ -83,6 +83,13 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
                 'sno' => '0'
             ],
+            [
+                'type' => 'stkent',
+                'head' => 'Stk',
+                'remarks' => 'Stock Entry',
+                'status' => 1,
+                'sno' => '0'
+            ],
 
         ]);
 
