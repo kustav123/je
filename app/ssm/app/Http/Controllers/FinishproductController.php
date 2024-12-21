@@ -154,7 +154,7 @@ class FinishproductController extends Controller
     {
         $item = Cache::rememberForever('finprod', function () {
         return Finishproducts::select([
-            'id', 'name', 'unit'
+            'id', 'name', 'unit', 'remarks'
             ])->where('status',1) ->get();
         });
         return $item;

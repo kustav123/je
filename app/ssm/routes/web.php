@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociateExtController;
 use App\Http\Controllers\AssociateIntController;
 use App\Http\Controllers\Clients;
+use App\Http\Controllers\DeliveryChallan;
 use App\Http\Controllers\FinishproductController;
 use App\Http\Controllers\HsnController;
 use App\Http\Controllers\RawproductController;
@@ -158,6 +159,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/supp', [SupplierController::class, 'getbyproduct']);
 
     });
+   
     Route::get('/fetch-by-clid', [scLedgerController::class, 'fetchByClid']);
 
     Route::get('/', [AdminController::class, 'index'])->middleware('auth');
