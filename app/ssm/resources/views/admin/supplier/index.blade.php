@@ -1,5 +1,12 @@
 @extends('layouts.master')
-
+<style>
+    /* Ensures that text inside the email column wraps properly */
+    table.dataTable td.wrap-text {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        word-break: break-all;
+    }
+</style>
 @section('content')
    @include('links.datatables')
 

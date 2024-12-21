@@ -10,5 +10,7 @@ class ReloadCacheController extends Controller
 
     function index() {
         Cache::flush();
+               return response()->json(['message' => 'All Cache cleaned'], 200);
+
         }
 }

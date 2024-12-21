@@ -151,10 +151,11 @@
     <div id="collapseFin" class="collapse {{ in_array($segment1, $financePages) ? 'show' : '' }}" aria-labelledby="headingFin" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Finance Management:</h6>
-            <a class="collapse-item {{ request()->is('deliverychallan') ? 'active' : '' }}" href="{{ url('/deliverychallan') }}">Delivery Challan</a>
+            <a class="collapse-item {{ request()->is('finsup') ? 'active' : '' }}" href="{{ url('/finsup') }}">Supplier Payment Entry</a>
+            {{-- <a class="collapse-item {{ request()->is('deliverychallan') ? 'active' : '' }}" href="{{ url('/deliverychallan') }}">Delivery Challan</a>
             <a class="collapse-item {{ request()->is('invoiceSrvGst') ? 'active' : '' }}" href="{{ url('/invoiceSrvGst') }}">GST Invoice</a>
             <a class="collapse-item {{ request()->is('invoiceSrvNonGst') ? 'active' : '' }}" href="{{ url('/invoiceSrvNonGst') }}">Non GST Invoice</a>
-            <a class="collapse-item {{ request()->is('clpay') ? 'active' : '' }}" href="{{ url('/clpay') }}">Client Payment Entry</a>
+            <a class="collapse-item {{ request()->is('clpay') ? 'active' : '' }}" href="{{ url('/clpay') }}">Client Payment Entry</a> --}}
 
 
         </div>

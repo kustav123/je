@@ -14,9 +14,12 @@ class SuppPayController extends Controller
     {
         $appinfo = new AppinfoController();
         $listcomp = $appinfo ->getlist();
+        $centeredText = 'Supplier Payment';
+
         // Log::info("", $listcomp);
          return view("fin.addSupPay", [
-        'listcomp' => $listcomp
+        'listcomp' => $listcomp,
+        'centeredText' => $centeredText
         ]);
     }
 

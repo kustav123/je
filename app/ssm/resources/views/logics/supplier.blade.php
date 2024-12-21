@@ -68,10 +68,18 @@
             ],
             order: [
                 [0, 'desc']
-            ]
+            ],
+            columnDefs: [
+            {
+                targets: 4, // Email column
+                width: '250px', // Set the fixed width for the email column
+            }
+            ],
+
+            autoWidth: false
+
         });
     });
-
     const add = () => {
     $('#suppForm').trigger("reset");
     $('#SuppModal').html("Add Supplier");

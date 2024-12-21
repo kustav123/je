@@ -130,7 +130,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('getextstock', [StkOutControler::class, 'stockMapExt']);
 
     });
-
+    Route::prefix('finsup')->group(function () {
+        Route::get('/', [SuppPayController::class, 'addnewPage']);
+        Route::post('pay', [SuppPayController::class, 'pay']);
+    });
     Route::prefix('stkinint')->group(function () {
         Route::get('/', [StkInControler::class, 'indexint']);
         Route::post('adjustint', [StkInControler::class, 'adjint']);

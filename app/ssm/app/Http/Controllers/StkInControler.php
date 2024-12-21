@@ -20,10 +20,12 @@ class StkInControler extends Controller
 
         $fp = new FinishproductController();
         $lp = $fp ->getfp() ;
+        $centeredText = 'Stock Adjustment Internal';
 
         return view('process.assin.index', [
         "type" => 'int',
-        "lp"=> $lp
+        "lp"=> $lp,
+        "centeredText" => $centeredText
 
 
     ]);
@@ -35,10 +37,12 @@ class StkInControler extends Controller
 
         $fp = new FinishproductController();
         $lp = $fp ->getfp() ;
+        $centeredText = 'Stock Adjustment External';
 
         return view('process.assin.index', [
         "type" => 'ext',
-        "lp"=> $lp
+        "lp"=> $lp,
+        "centeredText" => $centeredText
 
 
     ]);
